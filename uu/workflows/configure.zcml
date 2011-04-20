@@ -1,0 +1,17 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:cmf="http://namespaces.zope.org/cmf"
+  xmlns:five="http://namespaces.zope.org/five">
+ 
+  <!-- Include configuration for dependencies listed in setup.py -->
+  <includeDependencies package="." />
+ 
+  <five:registerPackage package="." initialize=".zope2.initialize" />
+
+  <!-- include Generic Setup extension profiles -->
+  <include file="profiles.zcml" />
+
+  <!-- register directory view for policy product skin overrides -->
+  <cmf:registerDirectory name="uu_workflows" />
+
+</configure>

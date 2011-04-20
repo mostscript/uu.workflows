@@ -1,0 +1,15 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  i18n_domain="uu.workflows">
+     
+    <!-- register extension profiles for add-on --> 
+    <genericsetup:registerProfile
+        name="default"
+        title="UPIQ.org site workflows"
+        directory="profiles/default"
+        description="Add-on for CMF/Plone providing various UPIQ workflows."
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+</configure>
