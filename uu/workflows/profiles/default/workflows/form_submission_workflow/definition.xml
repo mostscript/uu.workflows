@@ -34,6 +34,7 @@
  <state state_id="private" title="Private">
   <description>Private to owner, site manager, and anyone owner shares with using sharing tab.</description>
   <exit-transition transition_id="share"/>
+  <exit-transition transition_id="populate"/>
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Contributor</permission-role>
    <permission-role>Editor</permission-role>
@@ -135,6 +136,7 @@
   <description>Visible to site members.</description>
   <exit-transition transition_id="hide"/>
   <exit-transition transition_id="submit"/>
+  <exit-transition transition_id="populate"/>
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Contributor</permission-role>
    <permission-role>Editor</permission-role>
@@ -229,6 +231,14 @@
   <action url="%(content_url)s/content_status_modify?workflow_action=submit" category="workflow" icon="">Submit for review.</action>
   <guard>
    <guard-permission>Modify portal content</guard-permission>
+  </guard>
+ </transition>
+ <transition transition_id="populate" title="Populate forms" new_state="" trigger="USER" before_script="" after_script="">
+  <description>Populate forms based upon series frequency and schedule.</description>
+  <action url="%(content_url)s/content_status_modify?workflow_action=populate" category="workflow" icon="">Populate forms</action>
+  <guard>
+   <guard-permission>Modify portal content</guard-permission>
+   <guard-expression>python:'uu.chartaudit.auditseries' in here.portal_types.objectIds() and here.portal_interface.objectImplements(here, 'uu.chartaudit.interfaces.IAuditSeries')</guard-expression>
   </guard>
  </transition>
  <worklist worklist_id="submission_queue" title="">
