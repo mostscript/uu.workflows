@@ -238,7 +238,7 @@
   <action url="%(content_url)s/content_status_modify?workflow_action=populate" category="workflow" icon="">Populate forms</action>
   <guard>
    <guard-permission>Modify portal content</guard-permission>
-   <guard-expression>python:'uu.chartaudit.auditseries' in here.portal_types.objectIds() and here.portal_interface.objectImplements(here, 'uu.chartaudit.interfaces.IAuditSeries')</guard-expression>
+   <guard-expression>python:'uu.qiforms.formseries' in here.portal_types.objectIds() and here.portal_interface.objectImplements(here, 'uu.qiforms.interfaces.IFormSeries')</guard-expression>
   </guard>
  </transition>
  <worklist worklist_id="submission_queue" title="">
