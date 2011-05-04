@@ -14,4 +14,13 @@
   <!-- register directory view for policy product skin overrides -->
   <cmf:registerDirectory name="uu_workflows" />
 
+  <!-- permissions -->
+  <permission
+    id="uu.workflows.EnterData"
+    title="Can enter data"
+    />
+
+  <!-- sharing tab local role column -->
+  <utility name="FormEntry" factory=".sharing.FormEntryRole" />
+
 </configure>

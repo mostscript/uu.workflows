@@ -211,7 +211,7 @@
   <description>Retract submitted content, return to visible state.</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=retract" category="workflow" icon="">Retract</action>
   <guard>
-   <guard-permission>Modify portal content</guard-permission>
+   <guard-permission>Modify portal content; Enter Data</guard-permission>
   </guard>
  </transition>
  <transition transition_id="return" title="Return archived or published item for re-edit." new_state="visible" trigger="USER" before_script="" after_script="">
@@ -230,7 +230,7 @@
   <description>Submit form/item for review.</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=submit" category="workflow" icon="">Submit for review.</action>
   <guard>
-   <guard-permission>Modify portal content</guard-permission>
+   <guard-permission>Modify portal content; Enter Data</guard-permission>
   </guard>
  </transition>
  <transition transition_id="populate" title="Populate forms" new_state="" trigger="USER" before_script="" after_script="">
