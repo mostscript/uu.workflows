@@ -10,8 +10,8 @@
 
   <!-- permissions -->
   <permission
-    id="uu.workflows.EnterData"
-    title="Can enter data"
+    id="uu.workflows.FormEntry"
+    title="Enter Data"
     />
 
   <!-- include Generic Setup extension profiles -->
