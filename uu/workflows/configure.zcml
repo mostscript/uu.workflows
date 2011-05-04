@@ -10,7 +10,7 @@
 
   <!-- permissions -->
   <permission
-    id="uu.workflows.FormEntry"
+    id="uu.workflows.EnterData"
     title="Enter Data"
     />
 
