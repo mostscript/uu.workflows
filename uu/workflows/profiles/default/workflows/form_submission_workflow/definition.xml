@@ -8,6 +8,7 @@
  <permission>WebDAV Unlock items</permission>
  <state state_id="archived" title="Archived">
   <description>Archived form, approved by manager or editor and visible to site members and owner, but neither editable nor retractable by owner.  This is a terminal state for all roles but manager.</description>
+  <exit-transition transition_id="log"/>
   <exit-transition transition_id="make_public"/>
   <exit-transition transition_id="return"/>
   <permission-map name="Access contents information" acquired="False">
@@ -33,6 +34,7 @@
  </state>
  <state state_id="private" title="Private">
   <description>Private to owner, site manager, and anyone owner shares with using sharing tab.</description>
+  <exit-transition transition_id="log"/>
   <exit-transition transition_id="share"/>
   <exit-transition transition_id="populate"/>
   <permission-map name="Access contents information" acquired="False">
@@ -72,6 +74,7 @@
  </state>
  <state state_id="published" title="Public">
   <description>Published to public and visible on public Internet.  Item cannot be edited or retracted by owner in this state. This is a terminal state for all roles but manager.</description>
+  <exit-transition transition_id="log"/>
   <exit-transition transition_id="restrict_to_members"/>
   <exit-transition transition_id="return"/>
   <permission-map name="Access contents information" acquired="False">
@@ -99,6 +102,7 @@
  </state>
  <state state_id="submitted" title="Submitted">
   <description>Form has been submitted for review by manager or editor; can be retracted by owner from this state, but cannot be edited by the owner.</description>
+  <exit-transition transition_id="log"/>
   <exit-transition transition_id="archive"/>
   <exit-transition transition_id="make_public"/>
   <exit-transition transition_id="reject"/>
@@ -134,6 +138,7 @@
  </state>
  <state state_id="visible" title="Visible">
   <description>Visible to site members.</description>
+  <exit-transition transition_id="log"/>
   <exit-transition transition_id="hide"/>
   <exit-transition transition_id="submit"/>
   <exit-transition transition_id="populate"/>
@@ -185,6 +190,11 @@
   <action url="%(content_url)s/content_status_modify?workflow_action=hide" category="workflow" icon="">Make private</action>
   <guard>
    <guard-permission>Modify portal content</guard-permission>
+  </guard>
+ </transition>
+ <transition transition_id="log" title="History log message" new_state="" trigger="USER" before_script="" after_script="">
+  <description>Log a change or information about a content item at the point in time of a call.  This action is not intended to be called by user-facing menu choice, but programmatically as a side-effect of some set of user actions.</description>
+  <guard>
   </guard>
  </transition>
  <transition transition_id="make_public" title="Publish to the general public." new_state="published" trigger="USER" before_script="" after_script="">
