@@ -1,4 +1,6 @@
+from zope.app.component.hooks import getSite
 from zope.lifecycleevent import modified
+from Acquisition import aq_parent
 from DateTime import DateTime #zope2 DateTime
 from Products.CMFCore.utils import getToolByName
 
@@ -14,15 +16,20 @@ def history_log(context, message, set_modified=True):
     comment.  This may be used by event handlers for a context needing to
     write a log message to content history.
     """
+    parent = aq_parent(context)
+    portal = getSite() #need site as context in case of non-aq-wrapped context
     if isinstance(message, unicode):
         message = message.encode('utf-8')   # if unicode, assume utf-8
     message = str(message)                  # if message is a number of tuple
-    wtool = getToolByName(context, 'portal_workflow')
+    wtool = getToolByName(portal, 'portal_workflow')
     wflows = wtool.getWorkflowsFor(context)
     has_log_transition = all_true([has_log(wf, context) for wf in wflows])
     if has_log_transition:
+        if parent is None:
+            context = context.__of__(portal) #wrap for wtool to deal with
         wtool.doActionFor(context, 'log', comment=message)
     if set_modified:
         context.modification_date = DateTime() # == now
-        modified(context) #notify to reindex object.
+        if parent is not None:
+            modified(context) #notify to reindex object.
 
