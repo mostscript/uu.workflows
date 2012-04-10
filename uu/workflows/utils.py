@@ -31,5 +31,5 @@ def history_log(context, message, set_modified=True):
     if set_modified:
         context.modification_date = DateTime() # == now
         if parent is not None:
-            modified(context) #notify to reindex object.
+            context.reindexObject()
 
