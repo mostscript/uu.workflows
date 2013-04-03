@@ -251,14 +251,6 @@
    <guard-expression>python:'uu.qiforms.formseries' in here.portal_types.objectIds() and here.portal_interface.objectImplements(here, 'uu.qiforms.interfaces.IFormSeries')</guard-expression>
   </guard>
  </transition>
- <worklist worklist_id="submission_queue" title="">
-  <description>Submitted forms</description>
-  <action url="%(portal_url)s/search?review_state=submitted" category="global" icon="">Pending submissions (%(count)d)</action>
-  <guard>
-   <guard-permission>Review portal content</guard-permission>
-  </guard>
-  <match name="state" values="submitted"/>
- </worklist>
  <variable variable_id="action" for_catalog="False" for_status="True" update_always="True">
   <description>Previous transition</description>
   <default>
