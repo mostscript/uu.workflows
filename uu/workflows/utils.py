@@ -1,4 +1,4 @@
-from zope.app.component.hooks import getSite
+from zope.component.hooks import getSite
 from zope.lifecycleevent import modified
 from Acquisition import aq_parent
 from DateTime import DateTime #zope2 DateTime
