@@ -17,9 +17,6 @@
   <!-- include Generic Setup extension profiles -->
   <include file="profiles.zcml" />
 
-  <!-- register directory view for policy product skin overrides -->
-  <cmf:registerDirectory name="uu_workflows" />
-
   <!-- sharing tab local role column -->
   <utility name="FormEntry" factory=".sharing.FormEntryRole" />
   <utility name="ManageRole" factory=".sharing.ManagerRole" />
