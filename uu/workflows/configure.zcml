@@ -19,7 +19,7 @@
 
   <!-- sharing tab local role column -->
   <utility name="FormEntry" factory=".sharing.FormEntryRole" />
-  <utility name="ManageRole" factory=".sharing.ManagerRole" />
+  <utility name="Manager" factory=".sharing.ManagerRole" />
 
 
 </configure>
