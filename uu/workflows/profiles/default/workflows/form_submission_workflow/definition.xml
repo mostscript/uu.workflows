@@ -243,14 +243,6 @@
    <guard-permission>Modify portal content; Enter Data</guard-permission>
   </guard>
  </transition>
- <transition transition_id="populate" title="Populate forms" new_state="" trigger="USER" before_script="" after_script="">
-  <description>Populate forms based upon series frequency and schedule.</description>
-  <action url="%(content_url)s/content_status_modify?workflow_action=populate" category="workflow" icon="">Populate forms</action>
-  <guard>
-   <guard-permission>Modify portal content</guard-permission>
-   <guard-expression>python:'uu.qiforms.formseries' in here.portal_types.objectIds() and here.portal_interface.objectImplements(here, 'uu.qiforms.interfaces.IFormSeries')</guard-expression>
-  </guard>
- </transition>
  <variable variable_id="action" for_catalog="False" for_status="True" update_always="True">
   <description>Previous transition</description>
   <default>
