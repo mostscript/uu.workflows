@@ -8,6 +8,7 @@ class FormEntryRole(object):
     title = _(u'title_can_enter_data', default=u'Can enter data')
     required_permission = 'Enter Data'
 
+
 class ManagerRole(object):
     implements(ISharingPageRole)
     title = _(u'title_can_manage', default=u'Can manage')

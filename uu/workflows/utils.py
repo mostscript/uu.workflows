@@ -1,13 +1,12 @@
 from zope.component.hooks import getSite
-from zope.lifecycleevent import modified
 from Acquisition import aq_parent
-from DateTime import DateTime #zope2 DateTime
+from DateTime import DateTime  # zope2 DateTime
 from Products.CMFCore.utils import getToolByName
 
 
-_true = lambda a,b: a==b==True
+_true = lambda a, b: a == b and b
 all_true = lambda seq: reduce(_true, seq)
-has_log = lambda wf,o: wf.isActionSupported(o, 'log')
+has_log = lambda wf, o: wf.isActionSupported(o, 'log')
 
 
 def history_log(context, message, set_modified=True):
@@ -17,7 +16,7 @@ def history_log(context, message, set_modified=True):
     write a log message to content history.
     """
     parent = aq_parent(context)
-    portal = getSite() #need site as context in case of non-aq-wrapped context
+    portal = getSite()  # need site as context in case of non-aq-wrapped context
     if isinstance(message, unicode):
         message = message.encode('utf-8')   # if unicode, assume utf-8
     message = str(message)                  # if message is a number of tuple
@@ -26,10 +25,10 @@ def history_log(context, message, set_modified=True):
     has_log_transition = all_true([has_log(wf, context) for wf in wflows])
     if has_log_transition:
         if parent is None:
-            context = context.__of__(portal) #wrap for wtool to deal with
+            context = context.__of__(portal)  # wrap for wtool to deal with
         wtool.doActionFor(context, 'log', comment=message)
     if set_modified:
-        context.modification_date = DateTime() # == now
+        context.modification_date = DateTime()  # == now
         if parent is not None:
             context.reindexObject()
 
