@@ -123,6 +123,7 @@
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Member</permission-role>
+   <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
   </permission-map>
   <permission-map name="WebDAV Lock items" acquired="False">
