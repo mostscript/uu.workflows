@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<object name="portal_skins">
- <object name="uu_workflows"
-     meta_type="Filesystem Directory View"
-     directory="uu.workflows:skins/uu_workflows"/>
- <skin-path name="Sunburst Theme">
-  <layer name="uu_workflows" insert-after="custom" />
- </skin-path>
-</object>
