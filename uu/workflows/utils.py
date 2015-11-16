@@ -1,6 +1,7 @@
 from zope.component.hooks import getSite
 from Acquisition import aq_parent
 from DateTime import DateTime  # zope2 DateTime
+from plone.app.contentrules.handlers import _status as rule_status
 from Products.CMFCore.utils import getToolByName
 
 
@@ -27,6 +28,10 @@ def history_log(context, message, set_modified=True):
         if parent is None:
             context = context.__of__(portal)  # wrap for wtool to deal with
         wtool.doActionFor(context, 'log', comment=message)
+        # we do not expect content rules to trigger on log transitions, but
+        # plone.app.contentrules has a frustrating bug we now work around:
+        #  https://goo.gl/zTkbKB
+        rule_status.rule_filter.executed = set()
     if set_modified:
         context.modification_date = DateTime()  # == now
         if parent is not None:
